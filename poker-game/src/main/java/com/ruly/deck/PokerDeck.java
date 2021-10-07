@@ -1,9 +1,15 @@
 package com.ruly.deck;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.ruly.card.Card;
 import com.ruly.card.PokerCard;
 import com.ruly.rank.PokerRank;
+import com.ruly.rank.Rank;
 import com.ruly.suit.PokerSuit;
+import com.ruly.suit.Suit;
+import com.ruly.utils.CommonUtilities;
 
 public class PokerDeck extends Deck{
 	private final static int SUIT_SIZE = 4;
@@ -31,6 +37,22 @@ public class PokerDeck extends Deck{
 	}
 	
 	public void suffle() {
-		
+		Map<String,Card> cardsOnMap = new HashMap<>();
+		for(int suit=0; suit < getSuitSize(); suit++) {
+			for(int rank=0; rank < getRankSize(); rank++) {
+				suffling(cardsOnMap, suit, rank);
+			}
+		}
+	}
+	
+	private void suffling(Map<String,Card> cardsOnMap, int suit, int rank) {
+		Card suffledCard = new PokerCard(PokerSuit.getSuit(CommonUtilities.getRandomNumberBeetween(0,getSuitSize()-1)), 
+				PokerRank.getRank(CommonUtilities.getRandomNumberBeetween(0,getRankSize()-1)));
+		if( cardsOnMap.get(suffledCard.getLabel()) == null){
+			this.cards[suit][rank] = suffledCard;
+			cardsOnMap.put(suffledCard.getLabel(), suffledCard);
+		}else {
+			suffling(cardsOnMap, suit, rank);
+		}
 	}
 }
