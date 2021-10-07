@@ -1,1 +1,10 @@
 2021-10-07 11:11:35,703 [Worker-1: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2021-10-07 11:31:58,004 [Worker-1: Creating project "poker-game"] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.ruly.poker:poker-game:0.0.1-SNAPSHOT @ /home/ruly/Documents/GitHub/poker/poker-game/pom.xml.
+2021-10-07 11:31:58,187 [Worker-1: Creating project "poker-game"] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /poker-game/src/main/java
+2021-10-07 11:31:58,188 [Worker-1: Creating project "poker-game"] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /poker-game/src/main/resources
+2021-10-07 11:31:58,189 [Worker-1: Creating project "poker-game"] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /poker-game/src/test/java
+2021-10-07 11:31:58,189 [Worker-1: Creating project "poker-game"] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /poker-game/src/test/resources
+2021-10-07 11:32:00,262 [Worker-3: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-10-07 11:32:00,270 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2021-10-07 11:32:00,275 [Worker-3: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-10-07 11:32:00,276 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
