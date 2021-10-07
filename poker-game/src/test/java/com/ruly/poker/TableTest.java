@@ -35,4 +35,5 @@ public class TableTest {
 			assertEquals(table.getMaximumCard(), players[i].getCards().size());
 		}
 	}
+	
 }

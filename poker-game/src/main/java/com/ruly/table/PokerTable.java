@@ -4,7 +4,7 @@ import com.ruly.deck.PokerDeck;
 
 public class PokerTable extends Table {
 
-	private static int NUM_OF_PLAYER_CARDS = 5;
+	public static int NUM_OF_PLAYER_CARDS = 5;
 	private static int MAXIMUM_PLAYER = 10;	
 	
 	public PokerTable() {
