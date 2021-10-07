@@ -52,5 +52,34 @@ public enum Rank {
 				return Rank.ACE;
 		}
 	}
-
+	public String getLabel() {
+		switch(this.value) {
+			case 1: 
+				return "Two";
+			case 2: 
+				return "Three";
+			case 3: 
+				return "Four";
+			case 4: 
+				return "Five";
+			case 5: 
+				return "Six";
+			case 6: 
+				return "Seven";
+			case 7: 
+				return "Eight";
+			case 8: 
+				return "Nine";
+			case 9: 
+				return "TEN";
+			case 10: 
+				return "Jack";
+			case 11: 
+				return "Queen";
+			case 12: 
+				return "King";
+			default:
+				return "Ace";
+		}
+	}
 }

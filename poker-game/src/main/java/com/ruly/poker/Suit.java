@@ -23,4 +23,16 @@ public enum Suit {
 				return Suit.SPADES;
 		}
 	}
+	public String getLabel() {
+		switch(value) {
+			case 1: 
+				return "Heart";
+			case 2: 
+				return "Club";
+			case 3: 
+				return "Diamond";
+			default:
+				return "Spade";
+		}
+	}
 }
