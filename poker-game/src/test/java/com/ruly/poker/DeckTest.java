@@ -9,32 +9,56 @@ import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 
+import com.ruly.card.Card;
+import com.ruly.deck.Deck;
+import com.ruly.deck.PokerDeck;
+
 public class DeckTest {
 
 	@Test
 	public void whenInitialize_deckWillHaveMaximumCards() {
-		Deck deck = new Deck();
-		assertEquals(Deck.SUIT_SIZE * Deck.RANK_SIZE, deck.getTotalCards());
+		Deck deck = new PokerDeck();
+		assertEquals(deck.getMaximumCards(), deck.getTotalCards());
 	}
 	
 	@Test
 	public void whenInitialiaze_allCardsInDeckIsNotEmpty() {
-		Deck deck = new Deck();
-		Card[][] cardsOnDeck = deck.getCards();
-		for(int suit=0; suit < Deck.SUIT_SIZE; suit++) {
-			for(int rank=0; rank < Deck.RANK_SIZE; rank++) {
-				assertNotNull(cardsOnDeck[suit][rank]);
-			}
-		}
+		Deck deck = new PokerDeck();
+		assertAllCardsNotNull(deck);
 	}
 	
 	@Test
 	public void whenInitialize_allCardsInDeckIsUnique() {
-		Deck deck = new Deck();
+		Deck deck = new PokerDeck();
+		assertCardsIsUnique(deck);
+	}
+	
+	@Test
+	public void whenSuffling_deckWillHaveMaximumCards() {
+		Deck deck = new PokerDeck();
+		deck.suffle();
+		assertEquals(deck.getMaximumCards(), deck.getTotalCards());
+	}
+	
+	@Test
+	public void whenSuffling_allCardsInDeckIsNotEmpty() {
+		Deck deck = new PokerDeck();
+		deck.suffle();
+		assertAllCardsNotNull(deck);
+	}
+	
+	@Test
+	public void whenSuffle_allCardsInDeckIsUnique() {
+		Deck deck = new PokerDeck();
+		deck.suffle();
+		assertCardsIsUnique(deck);
+	}
+	
+	private void assertCardsIsUnique(Deck deck) {
 		Map<String,Card> cardsOnMap = new HashMap<>();
 		Card[][] cardsOnDeck = deck.getCards();
-		for(int suit=0; suit < Deck.SUIT_SIZE; suit++) {
-			for(int rank=0; rank < Deck.RANK_SIZE; rank++) {
+		for(int suit=0; suit < deck.getSuitSize(); suit++) {
+			for(int rank=0; rank < deck.getRankSize(); rank++) {
 				Card presentCard = cardsOnDeck[suit][rank];
 				String key = presentCard.getLabel();
 				assertNull(cardsOnMap.getOrDefault(key, null));
@@ -42,5 +66,14 @@ public class DeckTest {
 			}
 		}
 		assertEquals(deck.getTotalCards(), cardsOnMap.size());
+	}
+	
+	private void assertAllCardsNotNull(Deck deck) {
+		Card[][] cardsOnDeck = deck.getCards();
+		for(int suit=0; suit < deck.getSuitSize(); suit++) {
+			for(int rank=0; rank < deck.getRankSize(); rank++) {
+				assertNotNull(cardsOnDeck[suit][rank]);
+			}
+		}
 	}
 }

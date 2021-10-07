@@ -1,6 +1,9 @@
-package com.ruly.poker;
+package com.ruly.card;
 
-public class Card {
+import com.ruly.rank.Rank;
+import com.ruly.suit.Suit;
+
+public abstract class Card {
 	private Suit suit;
 	private Rank rank;
 	

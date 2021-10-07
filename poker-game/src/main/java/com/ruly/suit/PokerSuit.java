@@ -1,11 +1,11 @@
-package com.ruly.poker;
+package com.ruly.suit;
 
-public enum Suit {
+public enum PokerSuit implements Suit{
 	SPADES(0), HEARTS(1), CLUBS(2), DIAMONDS(3);
 	
 	private final int value;
 
-	private Suit(int value) {
+	private PokerSuit(int value) {
 		this.value = value;
 	}
 	public int getValue() {
@@ -14,13 +14,13 @@ public enum Suit {
 	public static Suit getSuit(int value) {
 		switch(value) {
 			case 1: 
-				return Suit.HEARTS;
+				return PokerSuit.HEARTS;
 			case 2: 
-				return Suit.CLUBS;
+				return PokerSuit.CLUBS;
 			case 3: 
-				return Suit.DIAMONDS;
+				return PokerSuit.DIAMONDS;
 			default:
-				return Suit.SPADES;
+				return PokerSuit.SPADES;
 		}
 	}
 	public String getLabel() {

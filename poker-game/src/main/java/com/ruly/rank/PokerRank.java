@@ -1,6 +1,6 @@
-package com.ruly.poker;
+package com.ruly.rank;
 
-public enum Rank {
+public enum PokerRank implements Rank{
 	ACE(0),
 	TWO(1),
 	THREE(2),
@@ -16,7 +16,7 @@ public enum Rank {
 	KING(12);
 	private final int value;
 	
-	private Rank(int value) {
+	private PokerRank(int value) {
 		this.value = value;
 	}
 	public int getValue() {
@@ -25,31 +25,31 @@ public enum Rank {
 	public static Rank getRank(int value) {
 		switch(value) {
 			case 1: 
-				return Rank.TWO;
+				return PokerRank.TWO;
 			case 2: 
-				return Rank.THREE;
+				return PokerRank.THREE;
 			case 3: 
-				return Rank.FOUR;
+				return PokerRank.FOUR;
 			case 4: 
-				return Rank.FIVE;
+				return PokerRank.FIVE;
 			case 5: 
-				return Rank.SIX;
+				return PokerRank.SIX;
 			case 6: 
-				return Rank.SEVEN;
+				return PokerRank.SEVEN;
 			case 7: 
-				return Rank.EIGHT;
+				return PokerRank.EIGHT;
 			case 8: 
-				return Rank.NINE;
+				return PokerRank.NINE;
 			case 9: 
-				return Rank.TENTH;
+				return PokerRank.TENTH;
 			case 10: 
-				return Rank.JACK;
+				return PokerRank.JACK;
 			case 11: 
-				return Rank.QUEEN;
+				return PokerRank.QUEEN;
 			case 12: 
-				return Rank.KING;
+				return PokerRank.KING;
 			default:
-				return Rank.ACE;
+				return PokerRank.ACE;
 		}
 	}
 	public String getLabel() {
