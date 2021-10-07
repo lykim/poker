@@ -6,12 +6,31 @@ public abstract class Deck {
 	protected Card[][] cards;
 	private int suitSize;
 	private int rankSize;
+	private int peekIndexSuit;
+	private int peekIndexRank;
 	
 	public Deck(int suitSize, int rankSize) {
 		this.cards = new Card[suitSize][rankSize];
 		this.suitSize = suitSize;
 		this.rankSize = rankSize;
+		peekIndexSuit = suitSize-1;
+		peekIndexRank = rankSize-1;
 		fillDeckWithDefaultOrderOfCards();
+	}
+	
+	public Card pop() {
+		Card card = cards[peekIndexSuit][peekIndexRank];
+		recalculatePeekIndex();
+		return card;
+	}
+	
+	private void recalculatePeekIndex() {
+		if(peekIndexRank == 0) {
+			peekIndexSuit -= 1;
+			peekIndexRank = rankSize-1;
+		}else {
+			peekIndexRank -= 1;			
+		}
 	}
 	
 	public int getMaximumCards() {
