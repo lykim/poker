@@ -1,13 +1,16 @@
 package com.ruly.utils;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 import com.ruly.card.Card;
 import com.ruly.constant.PokerConstant;
+import com.ruly.player.Player;
 import com.ruly.rank.PokerRank;
 import com.ruly.rank.Rank;
 
@@ -37,6 +40,39 @@ public class PokerUtilities {
 		}
 		return PokerConstant.NOTHING;
 	}
+	
+	public static int setSecondRank(Player player) {
+		int cardRank = player.getCardRank();
+		if(cardRank ==  PokerConstant.ROYAL_FLUSH) {
+			return getSuitValueFromFirstCard(player.getCards());
+		}else if(cardRank ==  PokerConstant.STRAIGHT_FLUSH) {
+			return getSuitValueFromFirstCard(player.getCards());
+		}
+		return 99;
+	}
+	
+	private static int getSuitValueFromFirstCard(Collection<Card> cards) {
+		Card card = cards.stream().findFirst().get();
+		return card.getSuit().getValue();
+	}
+	
+	public static int setThirdRank(Player player) {
+		int cardRank = player.getCardRank();
+		if(cardRank ==  PokerConstant.STRAIGHT_FLUSH) {
+			return getMaxRankedValue(player.getCards());
+		}	
+		return 0;
+	}
+	
+	private static int getMaxRankedValue(Collection<Card> cards) {
+		Optional<Card> optCard = cards.stream().filter(card -> card.getRank() == PokerRank.ACE).findAny();
+		if(optCard.isPresent()) return 99;
+		return cards.stream()
+		.mapToInt(card -> card.getRank().getValue())
+		.max().getAsInt();
+	}
+	
+	
 	
 	private static boolean isStraight(Set<Card> cards) {
 		if(!isAllCardsHaveSameSuit(cards)) {

@@ -109,11 +109,11 @@ public class CardGeneratorUtilities {
 		Set<Card> cards = new HashSet<Card>(twoCardsSameRankKing);
 		int maxIndex = PokerRank.values().length -1;
 		for(int i=2; i < 5; i++) {
-			int rankIndex = i * 2;
+			int rankIndex = i * 3;
 			if(rankIndex == rank.getValue()) {
 				++rankIndex;
 			}
-			if(rankIndex >=maxIndex) {
+			if(rankIndex > maxIndex) {
 				rankIndex = rankIndex % maxIndex; 
 			}
 			int suitIndex = i % 3;

@@ -2,13 +2,11 @@ package com.ruly.poker;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
 import com.ruly.card.Card;
-import com.ruly.card.PokerCard;
 import com.ruly.constant.PokerConstant;
 import com.ruly.rank.PokerRank;
 import com.ruly.suit.PokerSuit;
@@ -66,7 +64,7 @@ public class PokerHandTest {
 	
 	@Test
 	public void givenOnePair_thenGetOnePair() {
-		Set<Card> cards = CardGeneratorUtilities.generateOnePair(PokerRank.ACE);
+		Set<Card> cards = CardGeneratorUtilities.generateOnePair(PokerRank.KING);
 		assertEquals(PokerConstant.ONE_PAIR, PokerUtilities.getHand(cards));
 	}
 	

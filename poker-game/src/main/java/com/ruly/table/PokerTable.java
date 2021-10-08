@@ -2,8 +2,6 @@ package com.ruly.table;
 
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import com.ruly.deck.PokerDeck;
 import com.ruly.player.Player;
@@ -27,9 +25,16 @@ public class PokerTable extends Table {
 	public void rankPlayersHand() {
 		playersByHandRank = Arrays.stream(players).map(player -> {
 				player.setCardRank(PokerUtilities.getHand(player.getCards()));
+				player.setSecondRank(PokerUtilities.setSecondRank(player));
+				player.setThirdRank(PokerUtilities.setThirdRank(player));
 				return player;
-			}).sorted(Comparator.comparingInt(Player::getCardRank))
+			}).sorted(Comparator.comparingInt(Player::getCardRank)
+					.thenComparing(Player::getSecondRank)
+					.thenComparing(Player::getThirdRank, Comparator.reverseOrder()))
 				.toArray(size-> new Player[size]);
+		
+		
+		
 		Arrays.stream(playersByHandRank).forEach(player -> {
 			System.out.println(player.getCardRank() + " - " +player.getName());
 		});
