@@ -43,6 +43,8 @@ public abstract class Table {
 			e.printStackTrace();
 		}
 	}
+	public abstract void rankPlayersHand();
+	
 	private void giveCardsToPlayers() {
 		for(int i=0; i < getMaximumCard(); i++) {
 			for(int playerIndex = 0; playerIndex < players.length; playerIndex++) {

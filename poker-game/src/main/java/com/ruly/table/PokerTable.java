@@ -15,5 +15,9 @@ public class PokerTable extends Table {
 		deck = new PokerDeck();
 		deck.suffle();
 	}
-	
+
+	@Override
+	public void rankPlayersHand() {
+		
+	}
 }
