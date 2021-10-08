@@ -48,15 +48,13 @@ public class PokerHandTest {
 	
 	@Test
 	public void givenStraight_thenGeStraight() {
-		Set<Card> cards = CardGeneratorUtilities.generateSetOfStraightFlush(PokerSuit.CLUBS, PokerRank.FOUR.getValue());
-		assertEquals(PokerConstant.STRAIGHT, PokerUtilities.getHand(CardGeneratorUtilities.scrambleSuit(cards)));
+		Set<Card> cards = CardGeneratorUtilities.generateStraight(PokerSuit.CLUBS, PokerRank.FOUR.getValue());
+		assertEquals(PokerConstant.STRAIGHT, PokerUtilities.getHand(cards));
 	}
 	
 	@Test
 	public void givenThreeOfAKind_thenGetThreeOfAKind() {
-		Set<Card> threeCardsSameRank = CardGeneratorUtilities.generateSameRanks(PokerRank.KING, 3);
-		threeCardsSameRank.add(new PokerCard(PokerSuit.CLUBS, PokerRank.FIVE));
-		threeCardsSameRank.add(new PokerCard(PokerSuit.DIAMONDS, PokerRank.FOUR));
+		Set<Card> threeCardsSameRank = CardGeneratorUtilities.generateThreeOfAKind(PokerRank.KING, PokerRank.FIVE, PokerRank.FOUR);
 		assertEquals(PokerConstant.THREE_OF_A_KIND, PokerUtilities.getHand(threeCardsSameRank));
 	}
 	

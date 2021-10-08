@@ -63,6 +63,13 @@ public class CardGeneratorUtilities {
 		return cards;
 	}
 	
+	public static Set<Card> generateThreeOfAKind(PokerRank rank, PokerRank extra1, PokerRank extra2){
+		Set<Card> threeCardsSameRank = CardGeneratorUtilities.generateSameRanks(rank, 3);
+		threeCardsSameRank.add(new PokerCard(PokerSuit.CLUBS, extra1));
+		threeCardsSameRank.add(new PokerCard(PokerSuit.DIAMONDS, extra2));
+		return threeCardsSameRank;
+	}
+	
 	public static Set<Card> generateFullHouse(Rank rank2, Rank rank3){
 		Set<Card> threeCardsSameRank = CardGeneratorUtilities.generateSameRanks(rank3, 3);
 		Set<Card> twoCardsSameRank = CardGeneratorUtilities.generateSameRanks(rank2, 2);
@@ -80,6 +87,11 @@ public class CardGeneratorUtilities {
 			cards.add(new PokerCard(suit, PokerRank.getRank(i)));
 		}
 		return cards;
+	}
+	
+	public static Set<Card> generateStraight(Suit suit, int minNumber){
+		Set<Card> cards = generateSetOfStraightFlush(suit, minNumber);
+		return scrambleSuit(cards);
 	}
 	
 	public static Set<Card> generateSetOfRoyalFlush(Suit suit){

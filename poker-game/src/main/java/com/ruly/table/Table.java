@@ -7,6 +7,7 @@ import com.ruly.player.Player;
 public abstract class Table {
 	protected String message;
 	protected Player[] players;
+	protected Player[] playersByHandRank;
 	protected Deck deck;
 	private int maximumCard;
 	private int maximumPlayers;
@@ -44,6 +45,10 @@ public abstract class Table {
 		}
 	}
 	public abstract void rankPlayersHand();
+	
+	public Player[] getPlayersByHandRank() {
+		return this.playersByHandRank;
+	}
 	
 	private void giveCardsToPlayers() {
 		for(int i=0; i < getMaximumCard(); i++) {
