@@ -20,8 +20,55 @@ public class PokerUtilities {
 			return PokerConstant.ROYAL_FLUSH;
 		}else if( isStraightFlush(cards) ) {
 			return PokerConstant.STRAIGHT_FLUSH;
+		}else if( isFourOfAKind(cards) ) {
+			return PokerConstant.FOUR_OF_A_KIND;
+		}else if ( isFullHouse(cards)) {
+			return PokerConstant.FULL_HOUSE;
+		}else if( isFlush(cards)) {
+			return PokerConstant.FLUSH;
+		}else if (isStraight(cards)) {
+			return PokerConstant.STRAIGHT;
+		}else if (isThreeOfAKind(cards)) {
+			return PokerConstant.THREE_OF_A_KIND;
+		}else if( isCardsHaveTwoPairs(cards)) {
+			return PokerConstant.TWO_PAIRS;
+		} else if( isOnePair(cards) ) {
+			return PokerConstant.ONE_PAIR;
 		}
-		return 0;
+		return PokerConstant.NOTHING;
+	}
+	
+	private static boolean isStraight(Set<Card> cards) {
+		if(!isAllCardsHaveSameSuit(cards)) {
+				if(isCardsInSequence(cards)) return true;
+		}
+		return false;
+	}
+	
+	private static boolean isFourOfAKind(Set<Card> cards) {
+		if(isCardsHaveSameRank(cards,4)) {
+			return true;
+		}
+		return false;
+	}
+	
+	private static boolean isOnePair(Set<Card> cards) {
+		if(!isCardsHaveSameRank(cards,3))
+			if(isCardsHaveSameRank(cards,2))
+				if(!isCardsHaveTwoPairs(cards)) return true;
+		return false;		
+	}
+	
+	private static boolean isFullHouse(Set<Card> cards) {
+		if(isCardsHaveSameRank(cards,3))
+			if(isCardsHaveSameRank(cards,2)) return true;
+		return false;
+	}
+	
+	private static boolean isThreeOfAKind(Set<Card> cards) {
+		if(isCardsHaveSameRank(cards,3))
+			if(!isCardsHaveSameRank(cards,2)) return true;
+		return false;
 	}
 	
 	private static boolean isRoyalFlush(Set<Card> cards) {
@@ -32,7 +79,16 @@ public class PokerUtilities {
 	
 	private static boolean isStraightFlush(Set<Card> cards) {
 		if(isAllCardsHaveSameSuit(cards)) {
-			if(isCardsInSequence(cards)) return true;
+			if(!isRoyalFlushRank(cards))
+				if(isCardsInSequence(cards)) return true;
+		}
+		return false;
+	}
+	
+	private static boolean isFlush(Set<Card> cards) {
+		if(isAllCardsHaveSameSuit(cards)) {
+			if(!isRoyalFlushRank(cards))
+				if(!isCardsInSequence(cards)) return true;
 		}
 		return false;
 	}
@@ -74,4 +130,34 @@ public class PokerUtilities {
 		}
 		return true;
 	}
+	
+	private static boolean isCardsHaveSameRank(Set<Card> cards, int occurenceNum) {
+		Map<String,Integer> mapOfOccurence = new HashMap<>();
+		for(Card card: cards) {
+			int occurence =  mapOfOccurence.getOrDefault(card.getRank().getLabel(), 0);
+			mapOfOccurence.put(card.getRank().getLabel(), ++occurence);
+		}
+		for(Integer value : mapOfOccurence.values()) {
+			if(value == occurenceNum) return true;
+		}
+		return false;
+	}
+	
+	private static boolean isCardsHaveTwoPairs(Set<Card> cards) {
+		Map<String,Integer> mapOfOccurence = new HashMap<>();
+		for(Card card: cards) {
+			int occurence =  mapOfOccurence.getOrDefault(card.getRank().getLabel(), 0);
+			mapOfOccurence.put(card.getRank().getLabel(), ++occurence);
+		}
+		int occurence = 0;
+		for(Integer value : mapOfOccurence.values()) {
+			if(value == 2) {
+				++occurence;
+			}
+		}
+		if(occurence == 2) return true;
+		return false;
+	}
+	
+	
 }
