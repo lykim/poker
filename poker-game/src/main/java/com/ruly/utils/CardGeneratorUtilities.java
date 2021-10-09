@@ -41,12 +41,31 @@ public class CardGeneratorUtilities {
 	}
 	
 	public static Set<Card> generateTwoPairs(Rank rank1, Rank rank2, Rank extra){
-		Set<Card> twoCardsSameRankKing = CardGeneratorUtilities.generateSameRanks(rank1, 2);
-		Set<Card> twoCardsSameRankQueen = CardGeneratorUtilities.generateSameRanks(rank2, 2);
+		Set<Card> twoCardsSameRankKing = generateSameRanks(rank1, 2);
+		Set<Card> twoCardsSameRankQueen = generateSameRanks(rank2, 2);
 		Set<Card> cards = new HashSet<Card>(twoCardsSameRankKing);
 		cards.addAll(twoCardsSameRankQueen);
 		cards.add(new PokerCard(PokerSuit.getSuit(3), extra));
 		return cards;
+	}
+	
+	public static Set<Card> generateTwoPairsWithDefinedSuit(Rank rank1, Rank rank2, Rank extra, Suit suit1, Suit suit2){
+		Set<Card> twoCardsSameRankKing = generateSameRanks(rank1, 2);
+		Set<Card> newTwoCardA = resetSuitOfCards(twoCardsSameRankKing, suit1);
+		Set<Card> twoCardsSameRankQueen = generateSameRanks(rank2, 2);
+		Set<Card> newTwoCardB = resetSuitOfCards(twoCardsSameRankQueen, suit1);
+		Set<Card> cards = new HashSet<Card>(newTwoCardA);
+		cards.addAll(newTwoCardB);
+		cards.add(new PokerCard(PokerSuit.getSuit(3), extra));
+		return cards;
+	}
+	
+	private static Set<Card> resetSuitOfCards(Set<Card> cards, Suit suit){
+		Set<Card> resetCards = new HashSet<>();
+		for(Card card: cards) {
+			resetCards.add(new PokerCard(suit, card.getRank()));
+		}
+		return resetCards;
 	}
 	
 	public static Set<Card> generateSameRanks(Rank rank, int numberOfCards){
@@ -58,25 +77,26 @@ public class CardGeneratorUtilities {
 	}
 	
 	public static Set<Card> generateFourOfAKind(Rank rank, Rank extra){
-		Set<Card> cards = CardGeneratorUtilities.generateSameRanks(rank, 4);
+		Set<Card> cards = generateSameRanks(rank, 4);
 		cards.add(new PokerCard(PokerSuit.CLUBS, extra));
 		return cards;
 	}
 	
 	public static Set<Card> generateThreeOfAKind(PokerRank rank, PokerRank extra1, PokerRank extra2){
-		Set<Card> threeCardsSameRank = CardGeneratorUtilities.generateSameRanks(rank, 3);
+		Set<Card> threeCardsSameRank = generateSameRanks(rank, 3);
 		threeCardsSameRank.add(new PokerCard(PokerSuit.CLUBS, extra1));
 		threeCardsSameRank.add(new PokerCard(PokerSuit.DIAMONDS, extra2));
 		return threeCardsSameRank;
 	}
 	
 	public static Set<Card> generateFullHouse(Rank rank2, Rank rank3){
-		Set<Card> threeCardsSameRank = CardGeneratorUtilities.generateSameRanks(rank3, 3);
-		Set<Card> twoCardsSameRank = CardGeneratorUtilities.generateSameRanks(rank2, 2);
+		Set<Card> threeCardsSameRank = generateSameRanks(rank3, 3);
+		Set<Card> twoCardsSameRank = generateSameRanks(rank2, 2);
 		Set<Card> cards = new HashSet<Card>(threeCardsSameRank);
 		cards.addAll(twoCardsSameRank);
 		return cards;
 	}
+	
 	public static Set<Card> generateSetOfStraightFlush(Suit suit, int minNumber){
 		if(minNumber == 10) {
 			--minNumber;
@@ -105,7 +125,7 @@ public class CardGeneratorUtilities {
 	}
 	
 	public static Set<Card> generateOnePair(Rank rank){
-		Set<Card> twoCardsSameRankKing = CardGeneratorUtilities.generateSameRanks(rank, 2);
+		Set<Card> twoCardsSameRankKing = generateSameRanks(rank, 2);
 		Set<Card> cards = new HashSet<Card>(twoCardsSameRankKing);
 		int maxIndex = PokerRank.values().length -1;
 		for(int i=2; i < 5; i++) {

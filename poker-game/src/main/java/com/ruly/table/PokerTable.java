@@ -29,7 +29,7 @@ public class PokerTable extends Table {
 				player.setThirdRank(PokerUtilities.setThirdRank(player));
 				return player;
 			}).sorted(Comparator.comparingInt(Player::getCardRank)
-					.thenComparing(Player::getSecondRank)
+					.thenComparing(Player::getSecondRank, Comparator.reverseOrder())
 					.thenComparing(Player::getThirdRank, Comparator.reverseOrder()))
 				.toArray(size-> new Player[size]);
 		
