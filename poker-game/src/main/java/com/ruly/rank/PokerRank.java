@@ -1,26 +1,32 @@
 package com.ruly.rank;
 
 public enum PokerRank implements Rank{
-	ACE(0),
-	TWO(1),
-	THREE(2),
-	FOUR(3),
-	FIVE(4),
-	SIX(5),
-	SEVEN(6),
-	EIGHT(7),
-	NINE(8),
-	TENTH(9),
-	JACK(10),
-	QUEEN(11),
-	KING(12);
+	ACE(0, "A"),
+	TWO(1, "2"),
+	THREE(2, "3"),
+	FOUR(3, "4"),
+	FIVE(4, "5"),
+	SIX(5, "6"),
+	SEVEN(6, "7"),
+	EIGHT(7, "8"),
+	NINE(8, "9"),
+	TENTH(9, "10"),
+	JACK(10, "J"),
+	QUEEN(11, "Q"),
+	KING(12, "K");
 	private final int value;
+	private final String abbreviation;
 	
-	private PokerRank(int value) {
+	private PokerRank(int value, String abbreviation) {
 		this.value = value;
+		this.abbreviation = abbreviation;
 	}
 	public int getValue() {
 		return this.value;
+	}
+	@Override
+	public String getAbbreviation() {
+		return this.abbreviation;
 	}
 	public static Rank getRank(int value) {
 		switch(value) {

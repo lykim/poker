@@ -1,15 +1,21 @@
 package com.ruly.suit;
 
 public enum PokerSuit implements Suit{
-	SPADES(0), HEARTS(1), CLUBS(2), DIAMONDS(3);
+	SPADES(0, "S"), HEARTS(1, "H"), CLUBS(2, "C"), DIAMONDS(3, "D");
 	
 	private final int value;
-
-	private PokerSuit(int value) {
+	private final String abbreviation;
+	
+	private PokerSuit(int value, String abbreviation) {
 		this.value = value;
+		this.abbreviation = abbreviation;
 	}
 	public int getValue() {
 		return this.value;
+	}
+	@Override
+	public String getAbbreviation() {
+		return this.abbreviation;
 	}
 	public static Suit getSuit(int value) {
 		switch(value) {

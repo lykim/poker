@@ -23,4 +23,8 @@ public abstract class Card {
 	public String getLabel() {
 		return rank.getLabel() + " of " + suit.getLabel();
 	}
+	
+	public String getAbbreviation() {
+		return rank.getAbbreviation() + suit.getAbbreviation();
+	}
 }

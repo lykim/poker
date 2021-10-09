@@ -32,11 +32,5 @@ public class PokerTable extends Table {
 					.thenComparing(Player::getSecondRank, Comparator.reverseOrder())
 					.thenComparing(Player::getThirdRank, Comparator.reverseOrder()))
 				.toArray(size-> new Player[size]);
-		
-		
-		
-		Arrays.stream(playersByHandRank).forEach(player -> {
-			System.out.println(player.getCardRank() + " - " +player.getName());
-		});
 	}
 }
